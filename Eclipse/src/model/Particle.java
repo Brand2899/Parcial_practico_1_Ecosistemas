@@ -21,7 +21,7 @@ public class Particle implements Runnable {
 		this.posY = posY;
 		dirX = 1;
 		dirY = 1;
-		vel = (int) app.random(1, 5);
+		vel = (int) app.random(1, 3);
 	}
 	
 	public void run() {
@@ -39,7 +39,7 @@ public class Particle implements Runnable {
 	public void draw() {
 		app.fill(R, G, B);
 		app.noStroke();
-		app.circle(posX, posY, 30);
+		app.circle(posX, posY, 50);
 	}
 	
 	public void move() {
@@ -88,5 +88,9 @@ public class Particle implements Runnable {
 
 	public void setPosY(int posY) {
 		this.posY = posY;
+	}
+	
+	public void setVel(int vel) {
+		this.vel = vel;
 	}
 }

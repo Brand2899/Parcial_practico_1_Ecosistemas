@@ -43,6 +43,7 @@ public class Main extends PApplet{
 	public void draw() {
 		background(255);
 		c.draw();
+		stopParticle();
 	}
 	
 	public void startServer() {
@@ -77,8 +78,12 @@ public class Main extends PApplet{
 	}
 	
 	public void createParticle() {
-		c.createParticle("g1", 255, 0, 0, 500, 500, this);
-		c.createParticle("g1", 255, 0, 0, 500, 500, this);
-		c.createParticle("g1", 255, 0, 0, 500, 500, this);
+		for(int i = 0; i < particleNumber; i++) {
+			c.createParticle("g1", 255, 0, 0, 500, 500, this);
+		}
+	}
+	
+	public void stopParticle() {
+		c.stopParticle(mouseX, mouseY);
 	}
 }
