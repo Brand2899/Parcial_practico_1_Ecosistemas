@@ -16,7 +16,7 @@ public class Controller {
 		l.draw();
 	}
 	
-	public void stopParticle() {
-		
+	public void createParticle(String gName, int R, int G, int B, int posX, int posY, PApplet app) {
+		l.createParticle(gName, R, G, B, posX, posY, app);
 	}
 }

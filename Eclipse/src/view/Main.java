@@ -22,6 +22,8 @@ public class Main extends PApplet{
 	private BufferedWriter bw;
 	
 	private Controller c;
+	
+	private int particleNumber;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -34,12 +36,13 @@ public class Main extends PApplet{
 	
 	public void setup() {
 		c = new Controller(this);
+		particleNumber = 5;
+		createParticle();
 	}
 	
 	public void draw() {
 		background(255);
 		c.draw();
-		stopParticle();
 	}
 	
 	public void startServer() {
@@ -73,8 +76,9 @@ public class Main extends PApplet{
 				}).start();
 	}
 	
-	public void stopParticle() {
-		
+	public void createParticle() {
+		c.createParticle("g1", 255, 0, 0, 500, 500, this);
+		c.createParticle("g1", 255, 0, 0, 500, 500, this);
+		c.createParticle("g1", 255, 0, 0, 500, 500, this);
 	}
-	
 }

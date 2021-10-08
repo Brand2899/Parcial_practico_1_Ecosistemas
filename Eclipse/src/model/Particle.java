@@ -8,6 +8,7 @@ public class Particle implements Runnable {
 	private int R, G, B;
 	private int posX, posY;
 	private int dirX, dirY;
+	private int vel;
 	private PApplet app;
 	
 	public Particle(String group, int R, int G, int B, int posX, int posY, PApplet app) {
@@ -20,6 +21,7 @@ public class Particle implements Runnable {
 		this.posY = posY;
 		dirX = 1;
 		dirY = 1;
+		vel = (int) app.random(1, 5);
 	}
 	
 	public void run() {
@@ -41,30 +43,31 @@ public class Particle implements Runnable {
 	}
 	
 	public void move() {
-		//int vel = (int) app.random(2, 10);
-		
-		int vel = 1;
 		
 		int random1 = (int) app.random(1,28000);
 		int random2 = (int) app.random(1,30000);
 		int random3 = (int) app.random(1,2500);
 		
+		if(posX > 55 && posX < 1445) {
+			if(random1 % random3 == 0) {
+				dirX *= -1;
+			}
+		}
+		else if(posX <= 15 || posX >= 1485) {
+			dirX *=-1;
+		}
+		
+		if(posY > 55 && posY < 745) {
+			if(random2 % random3 == 0) {
+				dirY *= -1;
+			}
+		}
+		else if(posY <= 15 || posY >= 785) {
+			dirY *=-1;
+		}
+		
 		posX += 1*dirX*vel;
 		posY += 1*dirY*vel;
-		
-		if(posX < 30 || posX > (app.width - 30)) {
-			dirX *= -1;
-		}
-		if(posY < 30 || posY > (app.height - 30)) {
-			dirY *= -1;
-		}
-		
-		if(random1 % random3 == 0) {
-			dirX *= -1;
-		}
-		if(random2 % random3 == 0) {
-			dirY *= -1;
-		}
 	}
 	
 	public String getGroup() {
