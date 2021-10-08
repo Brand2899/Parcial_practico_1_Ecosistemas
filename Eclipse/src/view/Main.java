@@ -12,6 +12,7 @@ import java.net.Socket;
 
 import com.google.gson.Gson;
 
+import controller.Controller;
 import processing.core.PApplet;
 
 public class Main extends PApplet{
@@ -19,6 +20,8 @@ public class Main extends PApplet{
 	private Socket socket;
 	private BufferedReader br;
 	private BufferedWriter bw;
+	
+	private Controller c;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -26,15 +29,17 @@ public class Main extends PApplet{
 	}
 	
 	public void settings() {
-		size(1200, 800);
+		size(1500, 800);
 	}
 	
 	public void setup() {
-		
+		c = new Controller(this);
 	}
 	
 	public void draw() {
 		background(255);
+		c.draw();
+		stopParticle();
 	}
 	
 	public void startServer() {
@@ -67,4 +72,9 @@ public class Main extends PApplet{
 					
 				}).start();
 	}
+	
+	public void stopParticle() {
+		
+	}
+	
 }
