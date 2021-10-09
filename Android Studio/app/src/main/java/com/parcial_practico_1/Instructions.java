@@ -42,4 +42,32 @@ public class Instructions {
     public int getParticleNumber() {
         return particleNumber;
     }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
+
+    public void setR(int r) {
+        R = r;
+    }
+
+    public void setG(int g) {
+        G = g;
+    }
+
+    public void setB(int b) {
+        B = b;
+    }
+
+    public void setPosX(int posX) {
+        this.posX = posX;
+    }
+
+    public void setPosY(int posY) {
+        this.posY = posY;
+    }
+
+    public void setParticleNumber(int particleNumber) {
+        this.particleNumber = particleNumber;
+    }
 }
