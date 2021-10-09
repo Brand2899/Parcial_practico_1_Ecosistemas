@@ -46,7 +46,6 @@ public class Main extends PApplet{
 		posX = 0;
 		posY = 0;
 		particleNumber = 0;
-		createParticle();
 	}
 	
 	public void draw() {
@@ -86,6 +85,7 @@ public class Main extends PApplet{
 							posX = inst.getPosX();
 							posY = inst.getPosY();
 							particleNumber = inst.getParticleNumber();
+							createParticle();
 						}
 						
 					} catch (IOException e) {
@@ -99,6 +99,7 @@ public class Main extends PApplet{
 	public void createParticle() {
 		for(int i = 0; i < particleNumber; i++) {
 			c.createParticle(groupName, R, G, B, posX, posY, this);
+			System.out.println("Grupo particulas creada");
 		}
 	}
 	
