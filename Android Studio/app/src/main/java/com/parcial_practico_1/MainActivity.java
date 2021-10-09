@@ -22,14 +22,14 @@ import java.net.Socket;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Socket socket;
+    private BufferedReader br;
+    private BufferedWriter bw;
+
     private ConstraintLayout container;
     private TextView txtTitle, txtSubTitle1, txtSubTitle2, txtSubTitle3, txtSubTitle4, txtSubTitle5, txtSubTitle6;
     private EditText editTxt1, editTxt2, editTxt3, editTxt4;
     private Button bnCreate, bnDelete, bnRed, bnGreen, bnBlue;
-
-    private Socket socket;
-    private BufferedReader br;
-    private BufferedWriter bw;
 
     private String groupName;
     private int red, green, blue, posX, posY, particleNumber;
@@ -117,6 +117,9 @@ public class MainActivity extends AppCompatActivity {
 
                            inst = new Instructions(groupName, red, green, blue, posX, posY, particleNumber);
                            json = gson.toJson(inst);
+
+                           Toast.makeText(this, "Nombre grupo: " + groupName + "\n" + "Cantidad de particulas: " + particleNumber + "\n" + "posX: " + posX + "\n", Toast.LENGTH_SHORT).show();
+
                            send(json);
 
                        } catch(NumberFormatException e){
@@ -131,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
         new Thread(
                 () -> {
                     try {
-                        socket = new Socket("192.168.1.53", 6000);
+                        socket = new Socket("192.168.0.13", 5357);
                         System.out.println("Se ha conectado al servidor!!!");
 
                         /////////////////////////////////////////////////////

@@ -184,7 +184,7 @@
             android:layout_height="48dp"
             android:layout_marginBottom="32dp"
             android:backgroundTint="#A1A1A1"
-            android:text="Crear"
+            android:text="Borrar"
             android:textColor="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

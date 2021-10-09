@@ -60,7 +60,7 @@ public class Main extends PApplet{
 				() -> {
 					
 					try {
-						ServerSocket server = new ServerSocket(6000);
+						ServerSocket server = new ServerSocket(5357);
 						System.out.println("Esperando cliente");
 						socket = server.accept();
 						System.out.println("Cliente conectado");
