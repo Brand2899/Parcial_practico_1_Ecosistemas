@@ -189,6 +189,43 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
+        <Button
+            android:id="@+id/bnRed"
+            android:layout_width="104dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="86dp"
+            android:backgroundTint="#FF0000"
+            app:layout_constraintBottom_toTopOf="@+id/bnCreate"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtSubTitle6"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/bnGreen"
+            android:layout_width="104dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="86dp"
+            android:backgroundTint="#00FF00"
+            app:layout_constraintBottom_toTopOf="@+id/bnCreate"
+            app:layout_constraintEnd_toStartOf="@+id/bnBlue"
+            app:layout_constraintStart_toEndOf="@+id/bnRed"
+            app:layout_constraintTop_toBottomOf="@+id/txtSubTitle6"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <Button
+            android:id="@+id/bnBlue"
+            android:layout_width="104dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="86dp"
+            android:backgroundTint="#0000FF"
+            app:layout_constraintBottom_toTopOf="@+id/bnDelete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtSubTitle6"
+            tools:ignore="SpeakableTextPresentCheck" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

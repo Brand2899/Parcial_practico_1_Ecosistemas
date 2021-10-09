@@ -9,6 +9,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -23,14 +25,14 @@ public class MainActivity extends AppCompatActivity {
     private ConstraintLayout container;
     private TextView txtTitle, txtSubTitle1, txtSubTitle2, txtSubTitle3, txtSubTitle4, txtSubTitle5, txtSubTitle6;
     private EditText editTxt1, editTxt2, editTxt3, editTxt4;
-    private Button bnCreate, bnDelete;
+    private Button bnCreate, bnDelete, bnRed, bnGreen, bnBlue;
 
     private Socket socket;
     private BufferedReader br;
     private BufferedWriter bw;
 
     private String groupName;
-    private int Red, Green, Blue, posX, posY, particleNumber;
+    private int red, green, blue, posX, posY, particleNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,19 +56,72 @@ public class MainActivity extends AppCompatActivity {
 
         bnCreate = findViewById(R.id.bnCreate);
         bnDelete = findViewById(R.id.bnDelete);
+        bnRed = findViewById(R.id.bnRed);
+        bnGreen = findViewById(R.id.bnGreen);
+        bnBlue = findViewById(R.id.bnBlue);
+
+        red = 0;
+        green = 0;
+        blue = 0;
 
         startClient();
+
+        bnRed.setOnClickListener(
+                (v) -> {
+                    red = 255;
+                    green = 0;
+                    blue = 0;
+                    Toast.makeText(this, "Rojo" , Toast.LENGTH_SHORT).show();
+                }
+        );
+
+        bnGreen.setOnClickListener(
+                (v) -> {
+                    red = 0;
+                    green = 255;
+                    blue = 0;
+                    Toast.makeText(this, "Verde", Toast.LENGTH_SHORT).show();
+                }
+        );
+
+        bnBlue.setOnClickListener(
+                (v) -> {
+                    red = 0;
+                    green = 0;
+                    blue = 255;
+                    Toast.makeText(this, "Azul", Toast.LENGTH_SHORT).show();
+                }
+        );
 
         bnCreate.setOnClickListener(
                 (v) -> {
 
                     if(editTxt1.getText().toString().isEmpty() || editTxt2.getText().toString().isEmpty() || editTxt3.getText().toString().isEmpty() || editTxt4.getText().toString().isEmpty()){
                         Toast.makeText(this, "Por favor llenar los campos", Toast.LENGTH_SHORT).show();
+                    } if(red == 0 && green == 0 && blue == 0){
+                        Toast.makeText(this, "Por favor seleccionar un color", Toast.LENGTH_SHORT).show();
                     } else{
-                       groupName = editTxt1.getText().toString().replace(" ", "");
-                       particleNumber = Integer.parseInt(editTxt2.getText().toString().replace(" ", ""));
-                       posX = Integer.parseInt(editTxt3.getText().toString().replace(" ", ""));
-                       posY = Integer.parseInt(editTxt4.getText().toString().replace(" ", ""));
+                       try{
+                           groupName = editTxt1.getText().toString().replace(" ", "");
+                           particleNumber = Integer.parseInt(editTxt2.getText().toString().replace(" ", ""));
+                           posX = Integer.parseInt(editTxt3.getText().toString().replace(" ", ""));
+                           posY = Integer.parseInt(editTxt4.getText().toString().replace(" ", ""));
+
+                           /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                           Gson gson = new Gson();
+                           Instructions inst;
+                           String json;
+
+                           /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                           inst = new Instructions(groupName, red, green, blue, posX, posY, particleNumber);
+                           json = gson.toJson(inst);
+                           send(json);
+
+                       } catch(NumberFormatException e){
+                           e.getLocalizedMessage();
+                       }
                     }
                 }
         );
@@ -76,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         new Thread(
                 () -> {
                     try {
-                        socket = new Socket("192.168.1.53", 5000);
+                        socket = new Socket("192.168.1.53", 6000);
                         System.out.println("Se ha conectado al servidor!!!");
 
                         /////////////////////////////////////////////////////
