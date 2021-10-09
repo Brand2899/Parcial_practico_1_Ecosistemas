@@ -14,7 +14,7 @@ public class Instructions {
         this.posY = posY;
         this.particleNumber = particleNumber;
     }
-    
+
     public String getGroupName() {
         return groupName;
     }
