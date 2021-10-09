@@ -13,6 +13,7 @@ import java.net.Socket;
 import com.google.gson.Gson;
 
 import controller.Controller;
+import controller.Instructions;
 import processing.core.PApplet;
 
 public class Main extends PApplet{
@@ -23,7 +24,8 @@ public class Main extends PApplet{
 	
 	private Controller c;
 	
-	private int particleNumber;
+	private String groupName;
+	private int R, G, B, posX, posY, particleNumber;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -35,8 +37,15 @@ public class Main extends PApplet{
 	}
 	
 	public void setup() {
+		startServer();
 		c = new Controller(this);
-		particleNumber = 5;
+		groupName = "";
+		R = 0;
+		G = 0;
+		B = 0;
+		posX = 0;
+		posY = 0;
+		particleNumber = 0;
 		createParticle();
 	}
 	
@@ -52,7 +61,9 @@ public class Main extends PApplet{
 					
 					try {
 						ServerSocket server = new ServerSocket(5000);
+						System.out.println("Esperando cliente");
 						socket = server.accept();
+						System.out.println("Cliente conectado");
 						
 						InputStream is = socket.getInputStream();
 						InputStreamReader isr = new InputStreamReader(is);
@@ -67,6 +78,14 @@ public class Main extends PApplet{
 							String line = br.readLine();
 							System.out.println("Recibido: " + line);
 							Gson gson = new Gson();
+							Instructions inst = gson.fromJson(line, Instructions.class);
+							groupName = inst.getGroupName();
+							R = inst.getR();
+							G = inst.getG();
+							B = inst.getB();
+							posX = inst.getPosX();
+							posY = inst.getPosY();
+							particleNumber = inst.getParticleNumber();
 						}
 						
 					} catch (IOException e) {
@@ -79,7 +98,7 @@ public class Main extends PApplet{
 	
 	public void createParticle() {
 		for(int i = 0; i < particleNumber; i++) {
-			c.createParticle("g1", 255, 0, 0, 500, 500, this);
+			c.createParticle(groupName, R, G, B, posX, posY, this);
 		}
 	}
 	
