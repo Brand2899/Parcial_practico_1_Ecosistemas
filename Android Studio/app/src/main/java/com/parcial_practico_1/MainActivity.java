@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     private String groupName;
     private int red, green, blue, posX, posY, particleNumber;
+    private boolean delete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         red = 0;
         green = 0;
         blue = 0;
+        delete = false;
 
         startClient();
 
@@ -126,6 +128,26 @@ public class MainActivity extends AppCompatActivity {
                            e.getLocalizedMessage();
                        }
                     }
+                }
+        );
+
+        bnDelete.setOnClickListener(
+                (v) -> {
+
+                    delete = true;
+
+                    /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                    Gson gson = new Gson();
+                    Command cmd;
+                    String json;
+
+                    /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                    cmd = new Command(delete);
+                    json = gson.toJson(cmd);
+
+                    send(json);
                 }
         );
     }

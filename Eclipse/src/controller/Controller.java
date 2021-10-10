@@ -23,4 +23,8 @@ public class Controller {
 	public void stopParticle(int mouseX, int mouseY) {
 		l.stopParticle(mouseX, mouseY);
 	}
+	
+	public void deleteParticles() {
+		l.deleteParticles();
+	}
 }

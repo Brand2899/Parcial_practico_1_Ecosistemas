@@ -12,6 +12,7 @@ import java.net.Socket;
 
 import com.google.gson.Gson;
 
+import controller.Command;
 import controller.Controller;
 import controller.Instructions;
 import processing.core.PApplet;
@@ -26,6 +27,7 @@ public class Main extends PApplet{
 	
 	private String groupName;
 	private int R, G, B, posX, posY, particleNumber;
+	private boolean delete;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -46,6 +48,7 @@ public class Main extends PApplet{
 		posX = 0;
 		posY = 0;
 		particleNumber = 0;
+		delete = false;
 	}
 	
 	public void draw() {
@@ -78,6 +81,7 @@ public class Main extends PApplet{
 							System.out.println("Recibido: " + line);
 							Gson gson = new Gson();
 							Instructions inst = gson.fromJson(line, Instructions.class);
+							Command cmd = gson.fromJson(line, Command.class);
 							groupName = inst.getGroupName();
 							R = inst.getR();
 							G = inst.getG();
@@ -85,7 +89,9 @@ public class Main extends PApplet{
 							posX = inst.getPosX();
 							posY = inst.getPosY();
 							particleNumber = inst.getParticleNumber();
+							delete = cmd.isDelete();
 							createParticle();
+							deleteParticles();
 						}
 						
 					} catch (IOException e) {
@@ -105,5 +111,11 @@ public class Main extends PApplet{
 	
 	public void stopParticle() {
 		c.stopParticle(mouseX, mouseY);
+	}
+	
+	public void deleteParticles() {
+		if(delete) {
+			c.deleteParticles();
+		}
 	}
 }

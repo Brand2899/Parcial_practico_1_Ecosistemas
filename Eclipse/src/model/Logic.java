@@ -48,4 +48,12 @@ public class Logic {
 			}
 		}
 	}
+	
+	public void deleteParticles() {
+		do {
+			for(int i = 0; i < particleGroup.size(); i++) {
+				particleGroup.remove(i);
+			}
+		}while(particleGroup.size() != 0);
+	}
 }
