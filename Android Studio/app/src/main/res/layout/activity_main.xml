@@ -226,6 +226,30 @@
             app:layout_constraintTop_toBottomOf="@+id/txtSubTitle6"
             tools:ignore="SpeakableTextPresentCheck" />
 
+        <TextView
+            android:id="@+id/txtX"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="(Máx 1500)"
+            android:textColor="#8F8F8F"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/txtSubTitle4"
+            app:layout_constraintTop_toBottomOf="@+id/txtSubTitle3" />
+
+        <TextView
+            android:id="@+id/txtY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="(Máx 800)"
+            android:textColor="#8F8F8F"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/txtSubTitle5"
+            app:layout_constraintTop_toBottomOf="@+id/txtSubTitle3" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

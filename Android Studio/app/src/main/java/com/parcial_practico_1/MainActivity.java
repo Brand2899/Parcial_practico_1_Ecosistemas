@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private BufferedWriter bw;
 
     private ConstraintLayout container;
-    private TextView txtTitle, txtSubTitle1, txtSubTitle2, txtSubTitle3, txtSubTitle4, txtSubTitle5, txtSubTitle6;
+    private TextView txtTitle, txtSubTitle1, txtSubTitle2, txtSubTitle3, txtSubTitle4, txtSubTitle5, txtSubTitle6, txtX, txtY;
     private EditText editTxt1, editTxt2, editTxt3, editTxt4;
     private Button bnCreate, bnDelete, bnRed, bnGreen, bnBlue;
 
@@ -49,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
         txtSubTitle4 = findViewById(R.id.txtSubTitle4);
         txtSubTitle5 = findViewById(R.id.txtSubTitle5);
         txtSubTitle6 = findViewById(R.id.txtSubTitle6);
+        txtX = findViewById(R. id. txtX);
+        txtY = findViewById(R.id.txtY);
 
         editTxt1 = findViewById(R.id.editTxt1);
         editTxt2 = findViewById(R.id.editTxt2);
@@ -119,10 +121,12 @@ public class MainActivity extends AppCompatActivity {
 
                            inst = new Instructions(groupName, red, green, blue, posX, posY, particleNumber);
                            json = gson.toJson(inst);
-
-                           Toast.makeText(this, "Nombre grupo: " + groupName + "\n" + "Cantidad de particulas: " + particleNumber + "\n" + "posX: " + posX + "\n", Toast.LENGTH_SHORT).show();
-
                            send(json);
+
+                           editTxt1.setText("");
+                           editTxt2.setText("");
+                           editTxt3.setText("");
+                           editTxt4.setText("");
 
                        } catch(NumberFormatException e){
                            e.getLocalizedMessage();
