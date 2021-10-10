@@ -54,7 +54,7 @@ public class Main extends PApplet{
 	public void draw() {
 		background(255);
 		c.draw();
-		stopParticle();
+		calcDis();
 	}
 	
 	public void startServer() {
@@ -109,8 +109,8 @@ public class Main extends PApplet{
 		}
 	}
 	
-	public void stopParticle() {
-		c.stopParticle(mouseX, mouseY);
+	public void calcDis() {
+		c.calcDis(mouseX, mouseY);
 	}
 	
 	public void deleteParticles() {

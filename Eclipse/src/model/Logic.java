@@ -14,7 +14,7 @@ public class Logic {
 	public Logic(PApplet app) {
 		this.app = app;
 		dist = 0;
-		arrayPos = 0;
+		arrayPos = 5000;
 		particleGroup = new ArrayList<Particle>();
 	}
 	
@@ -31,20 +31,24 @@ public class Logic {
 	
 	public void moveParticle() {
 		for(int i = 0; i < particleGroup.size(); i++) {
-			new Thread(particleGroup.get(i)).start();
+			if(i != arrayPos) {
+				new Thread(particleGroup.get(i)).start();
+			}
 		}
 	}
 	
 	@SuppressWarnings("static-access")
-	public void stopParticle(int mouseX, int mouseY) {
+	public void calcDis(int mouseX, int mouseY) {
 		
 		for(int i = 0; i < particleGroup.size(); i++) {
 			dist = app.dist(mouseX, mouseY, particleGroup.get(i).getPosX(), particleGroup.get(i).getPosY());
 			
 			if(dist < 20) {
 				System.out.println("Cerca \n");
-				arrayPos = i;
-				
+				arrayPos = i;	
+			}
+			else {
+				arrayPos = 5000;
 			}
 		}
 	}

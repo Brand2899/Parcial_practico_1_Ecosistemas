@@ -20,8 +20,8 @@ public class Controller {
 		l.createParticle(gName, R, G, B, posX, posY, app);
 	}
 	
-	public void stopParticle(int mouseX, int mouseY) {
-		l.stopParticle(mouseX, mouseY);
+	public void calcDis(int mouseX, int mouseY) {
+		l.calcDis(mouseX, mouseY);
 	}
 	
 	public void deleteParticles() {
