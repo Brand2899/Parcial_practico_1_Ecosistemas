@@ -41,7 +41,6 @@ public class Logic {
 	
 	@SuppressWarnings("static-access")
 	public void calcDis(int mouseX, int mouseY) {
-		
 		for(int i = 0; i < particleGroup.size(); i++) {
 			dist = app.dist(mouseX, mouseY, particleGroup.get(i).getPosX(), particleGroup.get(i).getPosY());
 			
@@ -52,6 +51,16 @@ public class Logic {
 					app.textAlign(app.CENTER);
 					app.text(particleGroup.get(arrayPos).getGroup(), particleGroup.get(arrayPos).getPosX(), particleGroup.get(arrayPos).getPosY());
 					particleGroup.get(arrayPos).setSelected(true);
+				}catch(IndexOutOfBoundsException e) {
+					e.getLocalizedMessage();
+				}
+			}else {
+				try {
+					float distFar = app.dist(mouseX, mouseY, particleGroup.get(arrayPos).getPosX(), particleGroup.get(arrayPos).getPosY());
+					
+					if(distFar > 50) {
+						particleGroup.get(arrayPos).setSelected(false);
+					}
 				}catch(IndexOutOfBoundsException e) {
 					e.getLocalizedMessage();
 				}
