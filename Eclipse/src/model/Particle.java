@@ -9,6 +9,7 @@ public class Particle implements Runnable {
 	private int posX, posY;
 	private int dirX, dirY;
 	private int vel;
+	private boolean selected;
 	private PApplet app;
 	
 	public Particle(String group, int R, int G, int B, int posX, int posY, PApplet app) {
@@ -22,6 +23,7 @@ public class Particle implements Runnable {
 		dirX = 1;
 		dirY = 1;
 		vel = (int) app.random(1, 3);
+		selected = false;
 	}
 	
 	public void run() {
@@ -92,5 +94,13 @@ public class Particle implements Runnable {
 	
 	public void setVel(int vel) {
 		this.vel = vel;
+	}
+
+	public boolean isSelected() {
+		return selected;
+	}
+
+	public void setSelected(boolean selected) {
+		this.selected = selected;
 	}
 }
